@@ -1,8 +1,7 @@
 # This is theme user manaual
 
 # jekyll-theme-console
-# This is dailios
-# Interface will be revised
+# This is dailios for universe
 
 A jekyll theme with inspiration from linux consoles for hackers, developers and script kiddies.
 
