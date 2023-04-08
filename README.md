@@ -2,6 +2,7 @@
 
 # jekyll-theme-console
 # This is dailios
+# Interface will be revised
 
 A jekyll theme with inspiration from linux consoles for hackers, developers and script kiddies.
 
