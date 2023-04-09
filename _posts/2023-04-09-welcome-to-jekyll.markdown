@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to dailios!"
+title:  "Welcome to dailios"
 date:   2023-04-09 11:04:02 +0900
 categories: jekyll update
 ---
