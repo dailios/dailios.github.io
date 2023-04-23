@@ -53,5 +53,3 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-permissions_policy:
-  interest-cohort: "none"
