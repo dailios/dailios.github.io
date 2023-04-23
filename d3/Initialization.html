@@ -7,12 +7,12 @@
 	<script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-	<h1>D3 Bar Chart</h1>
+	<h1>D3 Bar Chart Completed</h1>
 	<div id="chart"></div>
 
 	<script>
 		// data.json 파일을 불러옵니다
-		d3.json("data.json").then(function(data) {
+		d3.json("http://localhost:8000/data.json").then(function(data) {
 			// SVG 요소의 크기를 지정합니다
 			var svgWidth = 500, svgHeight = 300;
 			// 바의 너비와 간격을 설정합니다

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV 데이터로 바 그래프 그리기</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: brown;
+        }
+
+        .axis-x,
+        .axis-y {
+            font-size: 12px;
+        }
+
+        .axis-x text {
+            text-anchor: end;
+            transform: rotate(-30deg);
+        }
+
+        .axis-y text {
+            text-anchor: end;
+        }
+    </style>
+</head>
+<body>
+    <svg width="500" height="300"></svg>
+
+    <script>
+        // svg element 선택
+        const svg = d3.select("svg");
+
+        // 데이터 로딩
+        d3.csv("http://localhost:8000/data.csv", d => {
+            return {
+                name: d.name,
+                value: +d.value
+            };
+        }).then(data => {
+            // x, y 스케일 설정
+            const xScale = d3.scaleBand()
+                .domain(data.map(d => d.name))
+                .range([50, 450])
+                .padding(0.1);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.value)])
+                .range([250, 50]);
+
+            // x, y 축 그리기
+            const xAxis = d3.axisBottom(xScale);
+            const yAxis = d3.axisLeft(yScale);
+
+            svg.append("g")
+                .attr("class", "axis-x")
+                .attr("transform", "translate(0, 250)")
+                .call(xAxis);
+
+            svg.append("g")
+                .attr("class", "axis-y")
+                .attr("transform", "translate(50, 0)")
+                .call(yAxis);
+
+            // 바 그래프 그리기
+            svg.selectAll(".bar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", d => xScale(d.name))
+                .attr("y", d => yScale(d.value))
+                .attr("width", xScale.bandwidth())
+                .attr("height", d => 250 - yScale(d.value));
+        });
+    </script>
+</body>
+</html>
